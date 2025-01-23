@@ -1,2 +1,2 @@
-# c2p2_HLS
-Repository for HLS related code pertaining to Spring 2025 c2-the-p2 advanced seminar  
+# Hello!! 
+This is a repository for HLS related code pertaining to the Spring 2025 c2-the-p2 advanced seminar.   
