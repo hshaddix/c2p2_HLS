@@ -1,4 +1,4 @@
-// Read input function with removed pragmas (STREAM, INLINE, PIPELINE)
+// Simpliefied code with removed pragmas
 
 #include "processHits.h"
 #include <iostream>  // For debug prints
