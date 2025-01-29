@@ -4,7 +4,6 @@
 // 3) explore fixed point arithmetic (ap_fixed)
 // 4) Replacing AXI with bram in INTERFACE pragmas 
 
-
 #include "processHits.h"
 #include <iostream>  // For debug prints
 #include <bitset>    // For binary output
@@ -62,7 +61,7 @@ static void processCluster(hls::stream<ap_uint<64>> &outputStream, hls::stream<a
 #endif
 
         switch (bitmask.to_uint()) {
-            case 0: first_hit.range(2, 0) = 1; break;  // 1 hit
+            case 0: first_hit.range(2, 0) = 1; break;  
             case 1: first_hit.range(2, 0) = 1;
                     third_hit = first_hit;
                     third_hit.range(14, 3) = position + 3;
@@ -102,42 +101,10 @@ static void processCluster(hls::stream<ap_uint<64>> &outputStream, hls::stream<a
         }
     }
 
-    bool isFirst32Filled = false;
-    ap_uint<64> outWord = 0;
-
     while (!packingOutStream.empty()) {
         ap_uint<32> fullClusterWord = packingOutStream.read();
-        ap_uint<16> cluster = fullClusterWord.range(31, 16);
-        ap_uint<16> spareID = fullClusterWord.range(15, 0);
-
-        ap_uint<12> position = cluster.range(14, 3);
-        ap_uint<4> chipID = position.range(11, 8);
-        ap_uint<8> stripID = position.range(7, 0);
-        ap_uint<12> unrolledStripID = (stripID >= 128) ? (stripID - 128) + chipID * 128 : stripID + chipID * 128;
-
-        ap_uint<1> last = packingOutStream.empty();
-        ap_uint<1> row = (stripID >= 128) ? 1 : 0;
-        ap_uint<2> nStrips = cluster.range(2, 0);
-        ap_uint<12> stripIndex = unrolledStripID;
-
-        ap_uint<32> encodedCluster = ((ap_uint<64>)last << 31) |
-                                      ((ap_uint<64>)row << 30) |
-                                      ((ap_uint<64>)nStrips << 28) |
-                                      ((ap_uint<64>)stripIndex << 16) |
-                                      ((ap_uint<64>)spareID << 0);
-
-        if (!isFirst32Filled) {
-            outWord.range(63, 32) = encodedCluster;
-            isFirst32Filled = true;
-        } else {
-            outWord.range(31, 0) = outWord.range(63, 32);
-            outWord.range(63, 32) = encodedCluster;
-            outputStream << outWord;
-            isFirst32Filled = false;
-        }
+        outputStream << fullClusterWord;
     }
-
-    if (outWord) outputStream << outWord;
 }
 
 // Read data from global memory and process
