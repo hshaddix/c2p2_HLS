@@ -1,9 +1,41 @@
-/// Correct Read Input with INLINE, Unroll, and Pipeline pragmas 
+/// Correct Read Input with Unroll, STREAM and PIPELINE pragmas 
 
-void read_input(ap_uint<64>* in, hls::stream<ap_uint<64>>& outputStream, unsigned int vSize) {
-    #pragma HLS INLINE off
-    #pragma HLS PIPELINE II=1
+#include "processHits.h"
+#include <iostream>  // For debug prints
+#include <bitset>    // For binary output
 
+#define BITS_64 64
+
+// Function to get the LAST bit from a 64-bit strip line
+bool get_LAST_bit(ap_uint<64> stripLine) {
+    return stripLine[63] || stripLine[31];  // Check both first bits of upper and lower 32 bits
+}
+
+// Process clusters with adjacency-based clustering and bitmask handling
+static void processCluster(hls::stream<ap_uint<64>> &outputStream, hls::stream<ap_uint<32>> &processStream) {
+    hls::stream<ap_uint<32>> packingOutStream("packingOutStream");
+    #pragma HLS STREAM variable=packingOutStream depth=6
+
+    while (!processStream.empty()) {
+        #pragma HLS PIPELINE II=1
+        ap_uint<32> fullClusterWord = processStream.read();
+        ap_uint<16> cluster = fullClusterWord.range(31, 16);
+        ap_uint<16> spareID = fullClusterWord.range(15, 0);
+
+        // Processing logic here...
+
+        packingOutStream << fullClusterWord;
+    }
+
+    while (!packingOutStream.empty()) {
+        #pragma HLS PIPELINE II=1
+        ap_uint<32> fullClusterWord = packingOutStream.read();
+        outputStream << fullClusterWord;
+    }
+}
+
+// Read data from global memory and process
+void read_input(ap_uint<64> *in, hls::stream<ap_uint<64>> &outputStream, unsigned int vSize) {
     for (int i = 0; i < HEADER_SIZE; i++) {
         #pragma HLS UNROLL
         ap_uint<64> header = in[i];
@@ -38,35 +70,12 @@ void read_input(ap_uint<64>* in, hls::stream<ap_uint<64>>& outputStream, unsigne
     }
 
     for (int i = 0; i < FOOTER_SIZE; i++) {
+        #pragma HLS UNROLL
         ap_uint<64> footer = in[vSize - FOOTER_SIZE + i];
         outputStream << footer;
     }
 }
 
-/// Explanation of read_input pragmas and reasoning for them 
-// #pragma HLS PIPELINE: Reduces the loop initiation interval (II) to 1, allowing new iterations to start every clock cycle, significantly improving throughput.
-// #pragma HLS UNROLL: Processes multiple loop iterations simultaneously, increasing parallelism and reducing latency for small, independent tasks.
-// #pragma HLS INLINE: Removes function call overhead by integrating the function directly into the calling context, minimizing latency. 
-
-/// Processhits function with stream variable and pipeline pragmas 
-static void processCluster(hls::stream<ap_uint<64>>& outputStream, hls::stream<ap_uint<32>>& processStream) {
-    hls::stream<ap_uint<32>> packingOutStream("packingOutStream");
-    #pragma HLS STREAM variable=packingOutStream depth=6
-
-    while (!processStream.empty()) {
-        #pragma HLS PIPELINE II=1
-        ap_uint<32> fullClusterWord = processStream.read();
-        ap_uint<16> cluster = fullClusterWord.range(31, 16);
-        ap_uint<16> spareID = fullClusterWord.range(15, 0);
-
-        // Handle bitmask logic here
-
-        // Push the result into packingOutStream
-        packingOutStream << fullClusterWord;
-    }
-
-    // Further processing...
-}
 
 /// Explanation of processCluster pragmas 
 // #pragma HLS STREAM: Increases stream buffer depth, preventing data stalls and ensuring smooth data flow between functions
