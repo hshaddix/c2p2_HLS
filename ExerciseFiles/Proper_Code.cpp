@@ -121,8 +121,6 @@ static void processCluster(hls::stream<ap_uint<64>> &outputStream, hls::stream<a
         }
     }
 
-
-
     // output the stream and pack into 64 stream
     bool isFirst32Filled = false;
     ap_uint<64> outWord = 0;
@@ -182,14 +180,10 @@ static void processCluster(hls::stream<ap_uint<64>> &outputStream, hls::stream<a
             // clean the state
             isFirst32Filled = false;
             isFirst32Filled = 0;
-
         }
     }
-
     // output the final cluster 
     if(outWord) outputStream << outWord;
-
-
 
 }
 
