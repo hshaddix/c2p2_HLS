@@ -1,7 +1,6 @@
 // Sandbox compiling thoughts: 
 // 1) Adjust stream depths 
-// 2) Changing/removing INLINE pragmas from areAdjacent and get_LAST_bit
-// 3) explore fixed point arithmetic (ap_fixed)
+// 2) explore fixed point arithmetic (ap_fixed)
 // 4) Replacing AXI with bram in INTERFACE pragmas 
 
 #include "processHits.h"
