@@ -43,7 +43,7 @@ static void processCluster(hls::stream<ap_uint<64>> &outputStream, hls::stream<a
 
     // Create a stream for processing hits
     hls::stream<ap_uint<32>> packingOutStream("packingOutStream");
-    #pragma HLS STREAM variable=packingOutStream depth=6
+    //// Insert directive here ////  
 
     // Loop over the stream
     while(!processStream.empty())
@@ -203,7 +203,7 @@ void read_input(ap_uint<64>* in, hls::stream<ap_uint<64>>& outputStream, unsigne
 
     // Create a stream for processing hits
     hls::stream<ap_uint<32>> processStream("processStream");
-    #pragma HLS STREAM variable=processStream depth=6
+    //// Insert directive here ////
 
     unsigned int i = HEADER_SIZE;
     while (i < vSize - FOOTER_SIZE) {
