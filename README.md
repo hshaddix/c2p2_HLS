@@ -18,8 +18,11 @@ First clone this repo:
 Navigate into ExerciseFiles, here you should see several directories, one with working files, and two others with some files that are necessary to compile an RTL kernel using the HLS code we will be changing and working with. 
 
   We will start with some basic functions, including some pragmas as needed to get some sort of intuition with pipelining, throughput, and optimization for HLS.
-Open the file 'NoPragmas.cpp' and take a loop. Our first job will be to simply open this file in our text editor and make some attempts at including pragmas where needed into existing Cxx code. 
+
+Open the file 'NoPragmas.cpp' and take a look. Our first job will be to simply open this file in our text editor and make some attempts at including pragmas where needed into existing Cxx code. 
+
 Try your best not to check any of the answers (located in 'WithPragmas.cpp') until you make an attempt at all 10 problems (Note: some will use the same directives). 
+
 As a resource, use the AMD manual (https://docs.amd.com/r/en-US/ug1399-vitis-hls/HLS-Programmers-Guide) along with these past several lectures. Also, don't hesitate to ask questions!
 
   After making a good attempt at understanding the 10 problems in 'NoPragmas.cpp', we will move on to the actual vitis GUI. 
