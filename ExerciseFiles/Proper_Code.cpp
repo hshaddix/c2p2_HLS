@@ -43,7 +43,6 @@ static void read_input(ap_uint<64>* in, hls::stream<ap_uint<64>>& outputStream, 
 
 // End of Header portion of code // 
 
-#include "processHits.h"
 #include <iostream>  // For debug prints
 #include <bitset>    // For binary output
 
