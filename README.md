@@ -4,20 +4,17 @@ This is a repository for HLS related code pertaining to the Spring 2025 c2-the-p
 
 ## Startup Exercises:
 
-  First, we will want to navigate to an environment in which we can utilize HLS.. 
-Run this series of commands (with minor edits!) 
+  First, we will want to navigate to the metis environment in case you have yet to do so!  
   - ssh -X -Y YourUsername@vmlab.niu.edu
-  - source /opt/metis/el8/contrib/amdtools/xilinx/Vitis/2023.1/settings64.sh
 
-  Now that we have our environment setup with xilinx and Vitis HLS, we can start to compile some code!!
-Think of these exercises as more of a sandbox type of thing, where you can mess around with existing code by adjusting directives and structures to change the throughput and timing of the code. 
+Now that we are inside our working environment, we need to access the directories in which we will be viewing working files and adjusting code. 
 
 First clone this repo:
 - git clone https://github.com/hshaddix/c2p2_HLS.git
 
 Navigate into ExerciseFiles, here you should see several directories, one with working files, and two others with some files that are necessary to compile an RTL kernel using the HLS code we will be changing and working with. 
 
-  We will start with some basic functions, including some pragmas as needed to get some sort of intuition with pipelining, throughput, and optimization for HLS.
+We will start with some basic functions, including some pragmas as needed to get some sort of intuition with pipelining, throughput, and optimization for HLS.
 
 Open the file 'NoPragmas.cpp' and take a look. Our first job will be to simply open this file in our text editor and make some attempts at including pragmas where needed into existing Cxx code. 
 
@@ -29,9 +26,21 @@ As a resource, use the AMD manual (https://docs.amd.com/r/en-US/ug1399-vitis-hls
 
 ## C Synthesis and Main Exercises
 
-(Step-by-step of getting GUI setup with HLS)
-  
-Open the file designated as 'Improper_Code.cpp.' Take a look at this code, do not focus on the logic itself, but note the data types. Compile this using the Vitis GUI, by clicking the 'C Synthesis' button in the bottom left. 
+While still in the c2p2_HLS directory, run the command:
+  1) source /opt/metis/el8/contrib/amdtools/xilinx/Vitis/2023.1/settings64.sh
+  2) vitis_hls
+
+With this, we effectively have now initialized xilinx and vitis so we can open the GUI and work on the HLS itself and compiling in C-synthesis. 
+
+NOTE: You may need to download x windows to be able to open the GUI. First try the above commands, and see if a window opens.
+      For the case of macOS, downloading the free application 'XQuartz' works to enable this for me. 
+
+Follow these instructions to properly get our HLS code setup in the GUI: 
+  1) 
+
+
+Open the file designated as 'Improper_Code.cpp.' Take a look at this code, do not focus on the logic itself, but note the data types. 
+
   - Make note of the resource utilization.
   - Navigate to the 'warnings' tab on the bottom. What do you see?
   - Consider how this file may need some brushing up given the concepts you have seen regarding pipelining, parallelization, and throughput.
