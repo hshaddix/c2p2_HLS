@@ -76,7 +76,7 @@ static void processCluster(hls::stream<ap_uint<64>> &outputStream, hls::stream<a
 
     // Create a stream for processing hits
     hls::stream<ap_uint<32>> packingOutStream("packingOutStream");
-   //// Insert directive here ////
+    #pragma HLS STREAM variable=packingOutStream depth=128 /// FIX THIS PRAGMA!!! (Too large, wastes memory)
 
     // Loop over the stream
     while(!processStream.empty())
@@ -227,6 +227,7 @@ void read_input(ap_uint<64>* in, hls::stream<ap_uint<64>>& outputStream, unsigne
 #endif
 
     for (int i = 0; i < HEADER_SIZE; i++) {
+        #pragma HLS UNROLL factor=64 /// FIX THIS PRAGMA!!!
         ap_uint<64> header = in[i];
         outputStream << header;
 #ifdef SW_EMU
@@ -248,6 +249,7 @@ void read_input(ap_uint<64>* in, hls::stream<ap_uint<64>>& outputStream, unsigne
 #endif
 
         while (i < vSize - FOOTER_SIZE) {
+            #pragma HLS PIPELINE II=10 /// FIX THIS PRAGMA!!!
             ap_uint<64> stripLine = in[i];
             bool lastBit = get_LAST_bit(stripLine);
 
