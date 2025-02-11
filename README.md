@@ -42,7 +42,7 @@ Follow these instructions to properly get our HLS code setup in the GUI:
   4) Put 'processHits' as the name for the top-level function; Press 'Add Files' and navigate to c2p2_HLS/ExerciseFiles/Improper_Code.cpp and click 'Open.'
   5) Press 'Next' on the testbench page.
   6) The only important thing to change on this page is 'Vivado IP Flow Target' into 'Vitis Kernel Flow Target' in the dropdown menu; Press 'Finish.'
-  7) If you have a white screen besides the dropdown menu, go to the 'Window' tab on the top left and go to 'Show View -> Debug.'
+  7) If you have a white screen besides the dropdown menu, go to the 'Window' tab on the top left and go to 'Debug.'
   8) Now as our final step to get it set up and actually see things, hover over 'Solution' and go to 'Run C Synthesis -> Active Solution' and press 'ok' when the window shows up.
 
 Now you have used Improper_Code.cpp to generate a utilization report. Click on Improper_Code.cpp and look at it, note the data types, and the amount of loops, iterative portions, etc. Do not overly focus on WHAT the logic is doing, but HOW the logic is doing things. From the 'Synthesis Summary' tab: 
