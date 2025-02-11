@@ -6,7 +6,7 @@ This is a repository for HLS related code pertaining to the Spring 2025 c2-the-p
 
   First, we will want to navigate to an environment in which we can utilize HLS.. 
 Run this series of commands (with minor edits!) 
-  - ssh -X -Y <YourUsername>@vmlab.niu.edu
+  - ssh -X -Y YourUsername@vmlab.niu.edu
   - source /opt/metis/el8/contrib/amdtools/xilinx/Vitis/2023.1/settings64.sh
 
   Now that we have our environment setup with xilinx and Vitis HLS, we can start to compile some code!!
