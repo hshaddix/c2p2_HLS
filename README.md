@@ -36,19 +36,30 @@ NOTE: You may need to download x windows to be able to open the GUI. First try t
       For the case of macOS, downloading the free application 'XQuartz' works to enable this for me. 
 
 Follow these instructions to properly get our HLS code setup in the GUI: 
-  1) 
+  1) Click NO on the pesky option to open the new version of the IDE 
+  2) Hover over 'File' in the top left and select 'New Project'
+  3) Name the project (whatever you want!!) ; Make sure the path for the location goes into the c2p2_HLS directory you cloned then press 'Next' 
+  4) Put 'processHits' as the name for the top-level function; Press 'Add Files' and navigate to c2p2_HLS/ExerciseFiles/Improper_Code.cpp and click 'Open.'
+  5) Press 'Next' on the testbench page.
+  6) The only important thing to change on this page is 'Vivado IP Flow Target' into 'Vitis Kernel Flow Target' in the dropdown menu; Press 'Finish.'
+  7) If you have a white screen besides the dropdown menu, go to the 'Window' tab on the top left and go to 'Show View -> Debug.'
+  8) Now as our final step to get it set up and actually see things, hover over 'Solution' and go to 'Run C Synthesis -> Active Solution' and press 'ok' when the window shows up.
 
-
-Open the file designated as 'Improper_Code.cpp.' Take a look at this code, do not focus on the logic itself, but note the data types. 
-
+Now you have used Improper_Code.cpp to generate a utilization report. Click on Improper_Code.cpp and look at it, note the data types, and the amount of loops, iterative portions, etc. Do not overly focus on WHAT the logic is doing, but HOW the logic is doing things. From the 'Synthesis Summary' tab: 
   - Make note of the resource utilization.
   - Navigate to the 'warnings' tab on the bottom. What do you see?
   - Consider how this file may need some brushing up given the concepts you have seen regarding pipelining, parallelization, and throughput.
 
-  Alternatively, we can run this file using the Makefile. 
+  Alternatively, we can run this file using the Makefile (potentially)
   To do this, 
   1) move Improper_Code.cpp into the kernel/ directory
   2) change the name to processHits.cpp
   3) go back into src/ and run "make" to compile. 
 
-Next.. 
+I want this section of exercise to be treated more of a sandbox, where you can adjust and make additions and play with it, then recompile to try to make things more or less optimal. There are a lot of things you could do, some things to get you started might be: 
+  - Adding important PRAGMAS where I have placed // Insert Directive here
+  - Adjust stream depths
+  - Explore fixed point arithmetic (ap_fixed)
+  - Change interface PRAGMAS and see what happens
+
+There are more optimizations that can be made, and the file 'Proper_Code.cpp' in the same directory of c2p2_HLS is my attempt at adding as many directives and optimizations as I could (note, it also removes a lot of debug statements in an attempt to make the code the main focus as a way to check your 'Improper_Code.cpp'!! 
