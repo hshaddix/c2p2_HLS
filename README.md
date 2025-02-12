@@ -50,16 +50,22 @@ Now you have used Improper_Code.cpp to generate a utilization report. Click on I
   - Navigate to the 'warnings' tab on the bottom. What do you see?
   - Consider how this file may need some brushing up given the concepts you have seen regarding pipelining, parallelization, and throughput.
 
-  Alternatively, we can run this file using the Makefile (potentially)
-  To do this, 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  Alternatively, we can run this file using the Makefile (If we want to look at reports this way, I'll need to look for the report file path, so try to get the GUI working)
+  To do this: 
+  
   1) move Improper_Code.cpp into the kernel/ directory
   2) change the name to processHits.cpp
   3) go back into src/ and run "make" to compile. 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 I want this section of exercise to be treated more of a sandbox, where you can adjust and make additions and play with it, then recompile to try to make things more or less optimal. There are a lot of things you could do, some things to get you started might be: 
   - Adding important PRAGMAS where I have placed // Insert Directive here
+  - Fix 'bad' PRAGMAS as indicated in the file 
   - Adjust stream depths
   - Explore fixed point arithmetic (ap_fixed)
   - Change interface PRAGMAS and see what happens
 
-There are more optimizations that can be made, and the file 'Proper_Code.cpp' in the same directory of c2p2_HLS is my attempt at adding as many directives and optimizations as I could (note, it also removes a lot of debug statements in an attempt to make the code the main focus as a way to check your 'Improper_Code.cpp'!! 
+There are more optimizations that can be made, and the file 'Proper_Code.cpp' in the same directory of c2p2_HLS is my attempt at adding as many directives and optimizations as I could (note, it also removes a lot of debug statements in an attempt to make the code the main focus as a way to get some insight after working on 'Improper_Code.cpp'!!). The important thing to note here is that 'Proper_Code.cpp' is NOT a cheat sheet, it is simply a version of the code with some potential optimizations. The purpose of this main exercise is to get you to navigate and get your hands dirty with actively manipulating the file.  
