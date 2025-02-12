@@ -27,7 +27,7 @@ As a resource, use the AMD manual (https://docs.amd.com/r/en-US/ug1399-vitis-hls
 ## C Synthesis and Main Exercises
 
 While still in the c2p2_HLS directory, run the command:
-  1) source /opt/metis/el8/contrib/amdtools/xilinx/Vitis/2023.1/settings64.sh
+  1) source /opt/metis/el8/contrib/amdtools/xilinx-2023.1/Vitis/2023.1/settings64.sh
   2) vitis_hls
 
 With this, we effectively have now initialized xilinx and vitis so we can open the GUI and work on the HLS itself and compiling in C-synthesis. 
