@@ -16,6 +16,7 @@ Navigate into ExerciseFiles, here you should see several directories, one with w
 
 We will start with some basic functions, including some pragmas as needed to get some sort of intuition with pipelining, throughput, and optimization for HLS.
 
+Navigate into the working_files directory.
 Open the file 'NoPragmas.cpp' and take a look. Our first job will be to simply open this file in our text editor and make some attempts at including pragmas where needed into existing Cxx code. 
 
 Try your best not to check any of the answers (located in 'WithPragmas.cpp') until you make an attempt at all 10 problems (Note: some will use the same directives). 
