@@ -38,7 +38,7 @@ NOTE: You may need to download x windows to be able to open the GUI. First try t
 
 Follow these instructions to properly get our HLS code setup in the GUI: 
   1) Click NO on the pesky option to open the new version of the IDE 
-  2) Hover over 'File' in the top left and select 'New Project'
+  2) Hover over 'File' in the top left and select 'New Project'; If in linux, simply click "New Project"
   3) Name the project (whatever you want!!) ; Make sure the path for the location goes into the c2p2_HLS directory you cloned then press 'Next' 
   4) Put 'processHits' as the name for the top-level function; Press 'Add Files' and navigate to c2p2_HLS/ExerciseFiles/Improper_Code.cpp and click 'Open.'
   5) Press 'Next' on the testbench page.
