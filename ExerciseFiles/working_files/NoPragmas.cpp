@@ -117,7 +117,7 @@ void initialize_array(int *a, int value) {
 // Function to compute the average of an array
 float compute_average(const int *a) {
     int sum = 0;
-    #pragma HLS PIPELINE
+    // Insert pragma here
     for (int i = 0; i < N; i++) {
         sum += a[i];
     }
